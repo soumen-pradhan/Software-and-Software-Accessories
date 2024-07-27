@@ -1,9 +1,35 @@
-<body>
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
+---
+import { getCollection } from 'astro:content';
 
-  <h1>My Astro Site</h1>
-  <h1>My Astro Learning Blog</h1>
-  <p>This is where I will post about my journey learning Astro.</p>
-</body>
+import '@styles/global.css';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+
+import { fmtDate } from '../utils';
+
+const pageTitle = 'Blog';
+
+const blogs = await getCollection('blog');
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <Header />
+  <div class="pl-8 pr-2 font-noto-sans md:pl-20">
+    <ul class="gap-6 text-slate-800">
+      {
+        blogs.map(blog => (
+          <li class="py-2 hover:text-slate-500">
+            <a href={`blog/${blog.slug}`}>
+              <div class="text-xl" transition:name={blog.data.title}>
+                {blog.data.title}
+              </div>
+              <div class="pl-8 text-sm">
+                {fmtDate(blog.data.pubDate)} - {blog.data.description}
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
