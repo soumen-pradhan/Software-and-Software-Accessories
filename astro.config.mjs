@@ -4,10 +4,13 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  // site: 'https://software-and-software-accessories.netlify.app',
+  site: 'https://software-and-software-accessories.netlify.app',
   trailingSlash: 'always',
   redirects: {
-    '/': '/about',
+    '/': '/about/',
+  },
+  build: {
+    redirects: false,
   },
   integrations: [tailwind()],
   markdown: {
