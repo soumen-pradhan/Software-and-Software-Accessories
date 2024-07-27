@@ -10,6 +10,8 @@ for (const path in pagesModel) {
   const astroComp = (await pagesModel[path]()) as AstroInstance;
   pages.push(astroComp);
 }
+
+const astroUrl = extractRouteName(Astro.url.pathname);
 ---
 
 <nav
@@ -18,14 +20,16 @@ for (const path in pagesModel) {
 >
   {
     pages.map(page => {
-      const activePage = Astro.url.pathname === page.url;
+      const pageUrl = extractRouteName(page.url ?? '');
+
+      const activePage = astroUrl === pageUrl;
       let className = activePage
         ? 'nav-header-active text-slate-800'
         : 'hover:text-slate-800';
 
       return (
         <a href={page.url} class={className} transition:name={page.url}>
-          {extractRouteName(page.url ?? '')}
+          {pageUrl}
         </a>
       );
     })
