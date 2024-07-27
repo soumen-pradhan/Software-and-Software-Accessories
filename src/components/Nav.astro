@@ -1,0 +1,61 @@
+---
+import '@styles/global.css';
+import type { AstroInstance } from 'astro';
+import { extractRouteName } from '../utils';
+
+const pagesModel = import.meta.glob(['../pages/*.astro', '!../pages/_*.astro']);
+
+const pages: AstroInstance[] = [];
+for (const path in pagesModel) {
+  const astroComp = (await pagesModel[path]()) as AstroInstance;
+  pages.push(astroComp);
+}
+---
+
+<nav
+  id="nav-header"
+  class="no-scrollbar mt-[-4rem] flex gap-10 overflow-x-auto font-noto-sans text-9xl lowercase leading-normal tracking-[-0.1em] text-slate-300 md:mt-[-8rem] md:text-[16rem]"
+>
+  {
+    pages.map(page => {
+      const activePage = Astro.url.pathname === page.url;
+      let className = activePage
+        ? 'nav-header-active text-slate-800'
+        : 'hover:text-slate-800';
+
+      return (
+        <a href={page.url} class={className} transition:name={page.url}>
+          {extractRouteName(page.url ?? '')}
+        </a>
+      );
+    })
+  }
+</nav>
+
+<style>
+  nav a:first-child {
+    @apply mx-[-0.5rem] md:mx-[-1rem];
+  }
+</style>
+
+<script>
+  function slideNavAfterLoad() {
+    const header = document.getElementById('nav-header');
+    const active = header?.querySelector('.nav-header-active');
+
+    if (!header || !active) return;
+
+    const headerRect = header.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+
+    if (activeRect.left > headerRect.left) {
+      const overflowPx = activeRect.left - headerRect.left;
+      header.scrollLeft += overflowPx;
+    }
+  }
+
+  // If ViewTransitions enabled, then this will be fired
+  document.addEventListener('astro:page-load', slideNavAfterLoad);
+  // Fired on hard reloads (even when ViewTransition is enabled)
+  // document.addEventListener('DOMContentLoaded', slideNavAfterLoad);
+</script>
