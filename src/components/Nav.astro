@@ -28,7 +28,7 @@ const astroUrl = extractRouteName(Astro.url.pathname);
         : 'hover:text-slate-800';
 
       return (
-        <a href={page.url} class={className} transition:name={page.url}>
+        <a href={page.url} class={className} transition:name={pageUrl}>
           {pageUrl}
         </a>
       );
