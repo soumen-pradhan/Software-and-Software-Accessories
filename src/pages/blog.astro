@@ -12,7 +12,10 @@ const pageTitle = 'Blog';
 const blogs = await getCollection('blog');
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  description="A list of all my blogs about software dev and computer science"
+>
   <Header />
   <div class="pl-8 pr-2 font-noto-sans md:pl-20">
     <ul class="gap-6 text-slate-800">

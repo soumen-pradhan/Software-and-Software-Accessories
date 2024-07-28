@@ -18,7 +18,10 @@ const { blog } = Astro.props;
 const { Content } = await blog.render();
 ---
 
-<BaseLayout pageTitle={blog.data.title}>
+<BaseLayout
+  pageTitle={blog.data.title}
+  description={`An article about ${blog.data.title}`}
+>
   <nav
     class="px-4 font-noto-sans text-4xl font-light lowercase leading-normal tracking-[-0.1em] text-slate-800"
   >

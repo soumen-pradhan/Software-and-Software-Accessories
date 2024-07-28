@@ -5,9 +5,10 @@ import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   pageTitle: string;
+  description?: string;
 }
 
-const { pageTitle } = Astro.props;
+const { pageTitle, description } = Astro.props;
 ---
 
 <html lang="en">
@@ -17,6 +18,7 @@ const { pageTitle } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
 
     <title>{pageTitle}</title>
     <ViewTransitions />

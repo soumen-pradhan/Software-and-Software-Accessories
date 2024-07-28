@@ -6,7 +6,10 @@ import Header from '@components/Header.astro';
 const pageTitle = 'About me';
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  description="A landing page inspired by windows phone ui showcasing blogs and projects"
+>
   <Header />
   <div
     class="prose prose-slate pb-10 pl-8 pr-2 font-noto-sans leading-normal md:pl-20"
