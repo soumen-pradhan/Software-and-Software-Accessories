@@ -18,12 +18,12 @@ const blogs = await getCollection('blog');
     <ul class="gap-6 text-slate-800">
       {
         blogs.map(blog => (
-          <li class="py-2 hover:text-slate-500">
+          <li class="pb-2 hover:text-slate-500">
             <a href={`/blog/${blog.slug}/`}>
-              <div class="text-xl" transition:name={blog.data.title}>
+              <div class="text-lg" transition:name={blog.data.title}>
                 {blog.data.title}
               </div>
-              <div class="pl-8 text-sm">
+              <div class="pl-8 text-xs">
                 {fmtDate(blog.data.pubDate)} - {blog.data.description}
               </div>
             </a>
