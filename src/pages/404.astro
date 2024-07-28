@@ -1,0 +1,66 @@
+---
+import type { AstroInstance } from 'astro';
+import { Image } from 'astro:assets';
+
+import '@styles/global.css';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { extractRouteName } from 'src/utils';
+import womanSitting from '@assets/line-art/woman-sitting.png';
+
+const pagesModel = import.meta.glob([
+  '../pages/*.astro',
+  '!../pages/_*.astro',
+  '!../pages/404.astro',
+]);
+
+const pages: AstroInstance[] = [];
+for (const path in pagesModel) {
+  const astroComp = (await pagesModel[path]()) as AstroInstance;
+  pages.push(astroComp);
+}
+---
+
+<BaseLayout pageTitle="Not found">
+  <div class="font-noto-sans text-slate-800">
+    <h1
+      class="absolute bottom-10 -z-10 -mx-36 rotate-90 text-[18rem] sm:-mx-44 sm:text-[22rem]"
+    >
+      404
+    </h1>
+
+    <Image
+      src={womanSitting}
+      alt="minimalist line drawing of a woman sitting"
+      width={womanSitting.width * 0.7}
+      class="absolute bottom-[2.3rem] left-36 -z-20 w-52 brightness-105 sm:left-44 sm:w-auto"
+    />
+
+    <div class="absolute bottom-[2.85rem] -z-20 h-px w-full bg-slate-800"></div>
+
+    <div
+      class="flex max-w-xl justify-end gap-2 px-4 py-8 text-lg font-light lowercase tracking-tighter text-slate-500"
+    >
+      <div class="text-right">Oops. page not found</div>
+
+      <div class="h-60 w-px bg-slate-500"></div>
+
+      <div class="flex flex-col">
+        {
+          pages.map(page => {
+            const pageUrl = extractRouteName(page.url ?? '');
+
+            return (
+              <a
+                href={page.url}
+                class="hover:text-slate-800"
+                transition:name={pageUrl}
+              >
+                {pageUrl}
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>

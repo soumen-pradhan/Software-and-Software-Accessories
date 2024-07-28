@@ -3,7 +3,11 @@ import '@styles/global.css';
 import type { AstroInstance } from 'astro';
 import { extractRouteName } from '../utils';
 
-const pagesModel = import.meta.glob(['../pages/*.astro', '!../pages/_*.astro']);
+const pagesModel = import.meta.glob([
+  '../pages/*.astro',
+  '!../pages/_*.astro',
+  '!../pages/404.astro',
+]);
 
 const pages: AstroInstance[] = [];
 for (const path in pagesModel) {
