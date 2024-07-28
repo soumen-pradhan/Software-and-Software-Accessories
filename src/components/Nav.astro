@@ -20,7 +20,7 @@ const astroUrl = extractRouteName(Astro.url.pathname);
 
 <nav
   id="nav-header"
-  class="no-scrollbar mt-[-4rem] flex gap-10 overflow-x-auto font-noto-sans text-9xl lowercase leading-normal tracking-[-0.1em] text-slate-300 md:mt-[-8rem] md:text-[16rem]"
+  class="no-scrollbar -mt-16 flex gap-10 overflow-x-auto pb-8 font-noto-sans text-9xl lowercase leading-normal tracking-[-0.1em] text-slate-300 md:-mt-32 md:text-[16rem]"
 >
   {
     pages.map(page => {
@@ -42,7 +42,7 @@ const astroUrl = extractRouteName(Astro.url.pathname);
 
 <style>
   nav a:first-child {
-    @apply mx-[-0.5rem] md:mx-[-1rem];
+    @apply -mx-[0.5rem] md:-mx-[1rem];
   }
 </style>
 
