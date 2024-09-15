@@ -23,14 +23,14 @@ const { Content } = await blog.render();
   description={`An article about ${blog.data.title}`}
 >
   <nav
-    class="px-4 font-noto-sans text-2xl lowercase leading-normal tracking-tighter text-slate-800 hover:text-slate-300 md:px-4 md:text-6xl"
+    class="px-4 text-2xl lowercase leading-normal tracking-tighter text-slate-800 hover:text-slate-300 md:px-4 md:text-6xl"
   >
-    &#10094; <a href="/blog/" transition:name="blog">Blog</a>
+    <a href="/blog/" transition:name="blog">&#10094; Blog</a>
   </nav>
 
   <article class="mx-auto flex flex-col px-4 md:max-w-4xl">
     <h1
-      class="pb-6 pt-10 font-noto-sans text-5xl tracking-tighter text-slate-800 md:pb-8 md:pt-28 md:text-8xl"
+      class="pb-6 pt-10 text-5xl tracking-tighter text-slate-800 md:pb-8 md:pt-28 md:text-8xl"
     >
       {blog.data.title}
     </h1>

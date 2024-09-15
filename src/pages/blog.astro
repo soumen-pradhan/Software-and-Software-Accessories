@@ -17,7 +17,7 @@ const blogs = await getCollection('blog');
   description="A list of all my blogs about software dev and computer science"
 >
   <Header />
-  <div class="px-4 py-4 font-noto-sans md:px-20">
+  <div class="px-4 py-4 md:px-20">
     <ul class="flex flex-col gap-3 text-slate-800">
       {
         blogs.map(blog => (
