@@ -23,24 +23,23 @@ const { Content } = await blog.render();
   description={`An article about ${blog.data.title}`}
 >
   <nav
-    class="px-4 font-noto-sans text-4xl font-light lowercase leading-normal tracking-[-0.1em] text-slate-800"
+    class="px-4 font-noto-sans text-2xl lowercase leading-normal tracking-tighter text-slate-800 hover:text-slate-300 md:px-4 md:text-6xl"
   >
-    <a href="/blog/" transition:name="blog">Blog</a>
+    &#10094; <a href="/blog/" transition:name="blog">Blog</a>
   </nav>
 
-  <article class="max-w-3xl px-4">
+  <article class="mx-auto flex flex-col px-4 md:max-w-4xl">
     <h1
-      class="pb-2 pt-16 font-noto-sans text-6xl font-light tracking-tighter text-slate-800"
-      transition:name={blog.data.title}
+      class="pb-6 pt-10 font-noto-sans text-5xl tracking-tighter text-slate-800 md:pb-8 md:pt-28 md:text-8xl"
     >
       {blog.data.title}
     </h1>
 
-    <p class="text-sm uppercase">
+    <h2 class="text-sm uppercase md:text-base">
       {fmtDate(blog.data.pubDate)} - {blog.data.author}
-    </p>
+    </h2>
 
-    <div class="prose prose-slate max-w-none py-2">
+    <div class="prose prose-slate max-w-none py-8 text-xs md:text-base">
       <Content />
     </div>
   </article>
