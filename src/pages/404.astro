@@ -1,11 +1,9 @@
 ---
 import type { AstroInstance } from 'astro';
-import { Image } from 'astro:assets';
 
 import '@styles/global.css';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { extractRouteName } from 'src/utils';
-import womanSitting from '@assets/line-art/woman-sitting.png';
 
 const pagesModel = import.meta.glob([
   '../pages/*.astro',
@@ -27,14 +25,6 @@ for (const path in pagesModel) {
     >
       404
     </h1>
-
-    <Image
-      src={womanSitting}
-      alt="minimalist line drawing of a woman sitting"
-      width={womanSitting.width * 0.7}
-      loading="eager"
-      class="absolute bottom-[2.4rem] left-36 -z-20 w-52 brightness-105 sm:bottom-[2.3rem] sm:left-44 sm:w-auto"
-    />
 
     <div class="absolute bottom-[2.85rem] -z-20 h-px w-full bg-slate-800"></div>
 
