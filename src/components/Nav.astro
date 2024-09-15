@@ -32,19 +32,17 @@ const astroUrl = extractRouteName(Astro.url.pathname);
         : 'hover:text-slate-800';
 
       return (
-        <a href={page.url} class={className} transition:name={pageUrl}>
+        <a
+          href={page.url}
+          class={`first:-mx-[0.5rem] first:md:-mx-[1rem] ${className}`}
+          transition:name={pageUrl}
+        >
           {pageUrl}
         </a>
       );
     })
   }
 </nav>
-
-<style>
-  nav a:first-child {
-    @apply -mx-[0.5rem] md:-mx-[1rem];
-  }
-</style>
 
 <script>
   function slideNavAfterLoad() {
