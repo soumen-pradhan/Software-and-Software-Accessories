@@ -24,10 +24,21 @@ const MONTHS = [
   'Dec',
 ] as const;
 
-export function fmtDate(date: Date): string {
+type DateFmt = 'human' | 'dots';
+
+export function fmtDate(date: Date, fmt: DateFmt = 'human'): string {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDay();
 
-  return `${MONTHS[month]} ${day}, ${year}`;
+  switch (fmt) {
+    case 'human':
+      return `${MONTHS[month]} ${day}, ${year}`;
+
+    case 'dots':
+      return `${year}.${month.toString().padStart(2, '0')}.${day.toString().padStart(2, '0')}`;
+
+    default:
+      return `${MONTHS[month]} ${day}, ${year}`;
+  }
 }
