@@ -1,8 +1,6 @@
 ---
 import '@styles/global.css';
 
-import { ViewTransitions } from 'astro:transitions';
-
 interface Props {
   pageTitle: string;
   description?: string;
@@ -26,7 +24,11 @@ const { pageTitle, description } = Astro.props;
     <meta name="description" content={description} />
 
     <title>{pageTitle}</title>
-    <ViewTransitions />
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
   </head>
   <body>
     <slot />

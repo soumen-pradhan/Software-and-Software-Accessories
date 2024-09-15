@@ -23,9 +23,7 @@ const blogs = await getCollection('blog');
         blogs.map(blog => (
           <li class="pb-2 hover:text-slate-500">
             <a href={`/blog/${blog.slug}/`}>
-              <div class="text-lg" transition:name={blog.data.title}>
-                {blog.data.title}
-              </div>
+              <div class="text-lg">{blog.data.title}</div>
               <div class="pl-8 text-xs">
                 {fmtDate(blog.data.pubDate)} - {blog.data.description}
               </div>

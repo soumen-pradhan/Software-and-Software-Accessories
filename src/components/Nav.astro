@@ -65,5 +65,5 @@ const astroUrl = extractRouteName(Astro.url.pathname);
   // If ViewTransitions enabled, then this will be fired
   document.addEventListener('astro:page-load', slideNavAfterLoad);
   // Fired on hard reloads (even when ViewTransition is enabled)
-  // document.addEventListener('DOMContentLoaded', slideNavAfterLoad);
+  document.addEventListener('DOMContentLoaded', slideNavAfterLoad);
 </script>
